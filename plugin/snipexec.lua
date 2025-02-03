@@ -1,3 +1,8 @@
+if vim.g.loaded_snipexec then
+	return
+end
+vim.g.loaded_snipexec = true
+
 vim.api.nvim_create_autocmd('FileType', {
 	pattern = { 'lua', 'vim', 'python', 'ruby', 'perl' },
 	callback = function()
