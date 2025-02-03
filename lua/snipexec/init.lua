@@ -46,7 +46,8 @@ end
 function M.opfunc(...)
 	local args = { ... }
 	if #args == 0 then
-		return
+		vim.o.opfunc = "v:lua.require'snipexec'.opfunc"
+		return 'g@'
 	end
 	local wise = args[1]
 	local restored = {

@@ -5,10 +5,7 @@ vim.g.loaded_snipexec = true
 
 local map = vim.keymap.set
 
-map({ 'n', 'x' }, '<Plug>SnipExec', function()
-	vim.o.opfunc = "v:lua.require'snipexec'.opfunc"
-	vim.api.nvim_feedkeys('g@', 'nt', false)
-end)
+map({ 'n', 'x' }, '<Plug>SnipExec', "v:lua.require'snipexec'.opfunc('v')", { expr = true  })
 
 vim.api.nvim_create_autocmd('FileType', {
 	pattern = require('snipexec.config')._config.filetypes,
