@@ -1,5 +1,3 @@
-local M = {}
-
 local function opfunc(t)
 	local restored_reg = vim.fn.getreg('"')
 	local visual_mode_key = { l = 'V', b = [[\<C-V>]] }
@@ -10,11 +8,11 @@ local function opfunc(t)
 	return selected_text
 end
 
-function M.exe(...)
+return function(...)
 	local ft = vim.bo.filetype
 	local args = { ... }
 	if #args == 0 then
-		vim.o.opfunc = "v:lua.require'snipexec'.exe"
+		vim.o.opfunc = "v:lua.require'snipexec'"
 		return "g@"
 	end
 
@@ -42,5 +40,3 @@ function M.exe(...)
 
 	vim.o.selection, vim.o.clipboard = unpack(restored_opts)
 end
-
-return M
