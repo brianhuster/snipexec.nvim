@@ -1,4 +1,5 @@
 *snipexec.nvim*        A simple plugin to execute code snippets in Neovim
+*snipexec*
 
 Author: Phạm Bình An
 Upstream: https://github.com/brianhuster/snipexec.nvim

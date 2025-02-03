@@ -3,9 +3,14 @@ if vim.g.loaded_snipexec then
 end
 vim.g.loaded_snipexec = true
 
+if vim.fn.has('nvim-0.10') == 0 then
+	vim.notify_once('snipexec.nvim requires at least Nvim 0.10', vim.log.levels.ERROR)
+	return
+end
+
 local map = vim.keymap.set
 
-map({ 'n', 'x' }, '<Plug>SnipExec', "v:lua.require'snipexec'.opfunc('v')", { expr = true  })
+map({ 'n', 'x' }, '<Plug>SnipExec', "v:lua.require'snipexec'.opfunc()", { expr = true })
 
 vim.api.nvim_create_autocmd('FileType', {
 	pattern = require('snipexec.config')._config.filetypes,

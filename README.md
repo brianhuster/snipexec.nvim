@@ -6,6 +6,7 @@ This plugin provides a keymapping to execute a Vimscript/Lua/Python/Ruby/Perl co
 
 ## Prerequisites:
 
+- Neovim 0.10 or higher
 - For other languages than Vimscript and Lua, you need to set up their respective providers. See `:h provider-python`, `:h provider-ruby`, `:h provider-perl` for instructions.
 
 ## Install using your favorite plugin manager.
@@ -23,24 +24,14 @@ vim-plug:
 Plug 'brianhuster/snipexec.nvim'
 ```
 
+Native "packages":
+```bash
+git clone --depth=1 https://github.com/brianhuster/snipexec.nvim.git ~/.local/share/nvim/site/pack/vendor/start/snipexec.nvim
+```
+
 # Usage
 
-By default, the plugin will map the following keymappings for supported filetypes:
-
-- `g={motion}`: Executes the text the motion moves over.
-- `{Visual}g=`: Executes the visually selected text.
-- `g==`: Executes the current line.
-
-# Configuration
-
-You can configure the keymapping and the filetypes it applies to. Below is the default configuration:
-
-```lua
-require('snipexec.config').set({
-    keymap = 'g=',
-    filetypes = { 'lua', 'vim', 'python', 'ruby', 'perl' },
-})
-```
+For usage and configuration, see [`:h snipexec.nvim`]()
 
 When you change option `keymap`, for example from `g=` to `yx`, the keymappings will be updated like this:
 - `g={motion}` will become `yx{motion}`
