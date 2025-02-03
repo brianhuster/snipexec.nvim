@@ -70,10 +70,7 @@ function M.opfunc(...)
 		if ft == 'vim' then
 			vim.cmd(expr)
 		else
-			vim.cmd(("%s << EOF\n%s\nEOF"):format(
-				ft == 'python' and 'py3' or ft,
-				expr
-			))
+			vim.cmd(("%s << EOF\n%s\nEOF"):format(ft, expr))
 		end
 	end)
 

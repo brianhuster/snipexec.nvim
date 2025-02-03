@@ -41,4 +41,21 @@ Explaination of each option:
 Note: If you wish to config the plugin in Vimscript, see |v:lua-call| for
 instruction on how to call Lua function in Vimscript
 
+==============================================================================
+3. FAQ
+								*snipexec-faq*
+
+HOW TO USE A LOCAL PROJECT ENVIRONMENT FOR SNIPEXEC (SUCH AS PYTHON ~
+VIRTUALENV, RUBY BUNDLE, ETC.) ~
+
+You can open Neovim inside that environment. Example with:
+
+- Python virtualenv >bash
+    python3 -m venv venv
+    source venv/bin/activate
+    nvim
+<
+- Ruby bundle >bash
+    bundle exec nvim
+
 vim:tw=78:ts=8:noet:ft=help:norl:
