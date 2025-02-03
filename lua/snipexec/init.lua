@@ -70,6 +70,8 @@ function M.opfunc(...)
 
 		if ft == 'vim' then
 			vim.cmd(code)
+		elseif ft == 'javascript' then
+			require('snipexec.node').exec(code)
 		else
 			vim.cmd(("%s << EOF\n%s\nEOF"):format(ft, code))
 		end
