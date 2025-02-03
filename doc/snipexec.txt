@@ -1,0 +1,44 @@
+*snipexec.nvim*        A simple plugin to execute code snippets in Neovim
+
+Author: Phạm Bình An
+Upstream: https://github.com/brianhuster/snipexec.nvim
+Copyright: (C) 2024 Phạm Bình An
+License: Apache 2.0 <https://github.com/brianhuster/snipexec.nvim/blob/main/LICENSE>
+
+                                      Type |gO| to see the table of contents.
+
+==============================================================================
+1. Usage
+								*snipexec-usage*
+These are default keymaps:
+
+`g={motion}`  Executes the text the motion moves over.
+`{Visual}g=`  Executes the visually selected text.
+`g==`         Executes the current line.
+
+==============================================================================
+2. Configuration
+							    *snipexec-config*
+
+`snipexec.nvim` can be configured by passing a Lua table to the function
+`require('snipexec.config').set()`. Below is the default configuration:
+>lua
+    require('snipexec.config').set({
+	keymap = 'g=',
+	filetypes = { 'lua', 'vim', 'python', 'ruby', 'perl' },
+    })
+<
+
+Explaination of each option:
+- `keymap`: When you change option `keymap`, for example from `g=` to `yx`, the
+  keymappings will be updated like this:
+    - `g={motion}` will become `yx{motion}`
+    - `{Visual}g=` will become `yx{Visual}`
+    - `g==` will become `yxx` (the last character is duplicated)
+
+- `filetypes`: Filetypes to enable snipexec for.
+
+Note: If you wish to config the plugin in Vimscript, see |v:lua-call| for
+instruction on how to call Lua function in Vimscript
+
+vim:tw=78:ts=8:noet:ft=help:norl:

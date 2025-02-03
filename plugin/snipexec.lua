@@ -4,13 +4,18 @@ end
 vim.g.loaded_snipexec = true
 
 local map = vim.keymap.set
-map({ 'n', 'x' }, '<Plug>SnipExec', function() require'snipexec'() end, { expr = true })
+
+map({ 'n', 'x' }, '<Plug>SnipExec', function()
+	vim.o.opfunc = "v:lua.require'snipexec'.opfunc"
+	vim.api.nvim_feedkeys('g@', 'nt', false)
+end)
 
 vim.api.nvim_create_autocmd('FileType', {
-	pattern = { 'lua', 'vim', 'python', 'ruby', 'perl' },
+	pattern = require('snipexec.config')._config.filetypes,
 	callback = function()
-		map({ 'n', 'x' }, 'g=', '<Plug>SnipExec',
-			{ buffer = true, desc = "Execute a code snippet the motion moves over or being visually selected" })
-		map('n', 'g==', '<Plug>SnipExec_', { buffer = true, desc = "Execute the current line" })
+		local keymap = require('snipexec.config')._config.keymap
+		map({ 'n', 'x' }, keymap, '<Plug>SnipExec',
+			{ buffer = true, desc = "Execute a code snippet selected by visual mode or motion" })
+		map('n', keymap .. keymap:sub(-1), '<Plug>SnipExec_', { buffer = true, desc = "Execute the current line" })
 	end
 })

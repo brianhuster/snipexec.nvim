@@ -25,11 +25,27 @@ Plug 'brianhuster/snipexec.nvim'
 
 # Usage
 
-By default, the plugin will map the following keymappings:
+By default, the plugin will map the following keymappings for supported filetypes:
 
 - `g={motion}`: Executes the text the motion moves over.
-- `g==`: Executes the current line.
 - `{Visual}g=`: Executes the visually selected text.
+- `g==`: Executes the current line.
+
+# Configuration
+
+You can configure the keymapping and the filetypes it applies to. Below is the default configuration:
+
+```lua
+require('snipexec.config').set({
+    keymap = 'g=',
+    filetypes = { 'lua', 'vim', 'python', 'ruby', 'perl' },
+})
+```
+
+When you change option `keymap`, for example from `g=` to `yx`, the keymappings will be updated like this:
+- `g={motion}` will become `yx{motion}`
+- `{Visual}g=` will become `yx{Visual}`
+- `g==` will become `yxx` (the last character is duplicated)
 
 # Credits:
 - [vim-scriptease](https://github.com/tpope/vim-scriptease)
