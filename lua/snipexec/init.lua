@@ -64,13 +64,13 @@ function M.opfunc(...)
 		local visual_mode_key = { line = 'V', block = [[\<C-V>]] }
 		vim.cmd("silent norm! `[" .. (visual_mode_key[wise] or 'v') .. "`]y")
 		vim.cmd.redraw()
-		local expr = vim.fn.getreg('"')
-		expr = ft == 'python' and indent_python(expr) or expr
+		local code = vim.fn.getreg('"')
+		code = ft == 'python' and indent_python(code) or code
 
 		if ft == 'vim' then
-			vim.cmd(expr)
+			vim.cmd(code)
 		else
-			vim.cmd(("%s << EOF\n%s\nEOF"):format(ft, expr))
+			vim.cmd(("%s << EOF\n%s\nEOF"):format(ft, code))
 		end
 	end)
 
